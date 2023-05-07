@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppDiabetes</string>
+
+
+    <string name="Iniciar_pantalla">Iiniciar sesión</string>
+    <string name="Registrar_pantalla">Registrarse</string>
+    <string name="btn_iniciar_sesion">Iniciar sesión</string>
+    <string name="registrarse">Registrarse</string>
+
+
+</resources>
