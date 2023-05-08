@@ -55,7 +55,7 @@ public class RegistrarseActivity extends AppCompatActivity
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Intent i = new Intent(getApplicationContext(), InicioActivity.class);
                                 startActivity(i);
-                                //updateUI(user);
+                                //updateUI(user);git 
                             } else {
                                 // If sign in fails, display a message to the user.
 
