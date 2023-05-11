@@ -88,5 +88,12 @@
             android:layout_width="130dp"
             android:layout_height="73dp"
             app:srcCompat="@drawable/facebook" />
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

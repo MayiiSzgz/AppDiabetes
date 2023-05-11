@@ -6,4 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".InicioActivity">
 
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <TextView
+        android:id="@+id/apellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Apellido"
+        app:layout_constraintTop_toBottomOf="@+id/nombre"
+        tools:layout_editor_absoluteX="117dp" />
+
+    <TextView
+        android:id="@+id/correo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Correo"
+        app:layout_constraintTop_toBottomOf="@+id/apellido"
+        tools:layout_editor_absoluteX="117dp" />
+
+    <TextView
+        android:id="@+id/telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Telefono"
+        app:layout_constraintTop_toBottomOf="@+id/correo"
+        tools:layout_editor_absoluteX="110dp" />
+
+    <Button
+        android:id="@+id/gluc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Registro Glucemia"
+        app:layout_constraintTop_toBottomOf="@+id/telefono"
+        tools:layout_editor_absoluteX="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
