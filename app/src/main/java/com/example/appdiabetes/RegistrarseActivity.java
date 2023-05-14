@@ -64,8 +64,9 @@ public class RegistrarseActivity extends AppCompatActivity
                                 Usuario usuario = new Usuario(
                                         nombre.getText().toString(),
                                         apellidos.getText().toString(),
-                                        telefono.getText().toString(),
-                                        correo.getText().toString()
+                                        correo.getText().toString(),
+                                        telefono.getText().toString()
+
 
                                 );
                                 // Se guarda el objeto Usuario en Firestore
