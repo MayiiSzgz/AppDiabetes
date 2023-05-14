@@ -11,7 +11,7 @@
         android:id="@+id/editTextNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,37 +20,37 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="nivel de glucemia" />
 
+
     <EditText
         android:id="@+id/fechaHora"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:inputType="date"
-        android:text="Fecha Ultima de registro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unidad" />
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Fecha y hora"
+        android:inputType="none"
+        android:onClick="showDateTimePicker"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="45dp" />
 
     <EditText
         android:id="@+id/estado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Estado de la Persona"
+        android:hint="Estado de la Persona"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fechaHora" />
+        app:layout_constraintTop_toBottomOf="@+id/fechaHoraEditText" />
 
     <Button
         android:id="@+id/enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="enviar"
+        android:layout_marginTop="96dp"
+        android:text="Enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/estado" />
@@ -59,11 +59,11 @@
         android:id="@+id/unidad"
         android:layout_width="118dp"
         android:layout_height="104dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
+        app:layout_constraintTop_toBottomOf="@+id/enviar">
 
         <RadioButton
             android:id="@+id/mg"
