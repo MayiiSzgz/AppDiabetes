@@ -2,6 +2,7 @@ package com.example.appdiabetes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import java.util.Calendar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -94,10 +96,13 @@ public class RegistroGlucemia extends AppCompatActivity {
                     // Obtener la referencia al documento del usuario actual
                     DocumentReference docRef = db.collection("Glucemia").document(user.getUid());
 
-                    // Agregar el nuevo registro de glucemia a la colección correspondiente
+                    // Obtener la referencia a la colección "Historial" dentro de la colección "Glucemia" del usuario actual
+                    CollectionReference historialCollectionRef = db.collection("Glucemia").document(user.getUid()).collection("Historial");
+
+                    // Agregar el nuevo registro de glucemia al historial del usuario correspondiente
                     String finalUnidad = unidad;
                     Date finalFechaHora = fechaHora;
-                    docRef.set(glucemia)
+                    historialCollectionRef.add(glucemia)
                             .addOnSuccessListener(documentReference -> {
                                 // Analizar el nivel de glucemia y mostrar el resultado en un mensaje
                                 Glucemia glucemiaActual = new Glucemia(valor, finalUnidad, finalFechaHora, estado);
@@ -107,6 +112,7 @@ public class RegistroGlucemia extends AppCompatActivity {
                             .addOnFailureListener(e -> {
                                 Toast.makeText(getApplicationContext(), "Error al agregar registro de glucemia", Toast.LENGTH_SHORT).show();
                             });
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Fecha y hora inválidas", Toast.LENGTH_SHORT).show();
                 }

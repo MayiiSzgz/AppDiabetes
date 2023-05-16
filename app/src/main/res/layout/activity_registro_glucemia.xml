@@ -11,15 +11,14 @@
         android:id="@+id/editTextNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="nivel de glucemia" />
-
+        tools:hint="nivel de glucemia" />
 
     <EditText
         android:id="@+id/fechaHora"
@@ -30,27 +29,29 @@
         android:hint="Fecha y hora"
         android:inputType="none"
         android:onClick="showDateTimePicker"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="45dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unidad" />
 
     <EditText
         android:id="@+id/estado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:inputType="text"
-        android:hint="Estado de la Persona"
+        android:hint="Estado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fechaHoraEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/fechaHora" />
 
     <Button
         android:id="@+id/enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="Enviar"
+        android:layout_marginTop="92dp"
+        android:text="enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/estado" />
@@ -59,11 +60,11 @@
         android:id="@+id/unidad"
         android:layout_width="118dp"
         android:layout_height="104dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enviar">
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber">
 
         <RadioButton
             android:id="@+id/mg"

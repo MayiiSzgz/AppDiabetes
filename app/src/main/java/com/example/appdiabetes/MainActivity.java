@@ -21,9 +21,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void irRegistrarse(View view)
-    {
-        Intent i = new Intent(this,RegistrarseActivity.class);
-        startActivity(i);
-    }
+
 }

@@ -36,7 +36,19 @@ public class IniciarSesionActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
+        if (currentUser != null) {
+            // El usuario ya ha iniciado sesión, redirigir a InicioActivity
+            Intent intent = new Intent(this, InicioActivity.class);
+            startActivity(intent);
+            finish(); // Opcional: finalizar la actividad actual para que el usuario no pueda volver a ella presionando el botón "Atrás"
+        }
+    }
+
+    //ir a irARegistrarse
+    public void irARegistrarse(View view)
+    {
+        Intent i = new Intent(this,RegistrarseActivity.class);
+        startActivity(i);
     }
 
     public void iniciarSesion(View view)

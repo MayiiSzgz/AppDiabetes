@@ -1,52 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".InicioActivity">
 
     <TextView
         android:id="@+id/nombre"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="49dp" />
+        android:layout_centerHorizontal="true"
+        android:text="Nombre" />
 
     <TextView
         android:id="@+id/apellido"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Apellido"
-        app:layout_constraintTop_toBottomOf="@+id/nombre"
-        tools:layout_editor_absoluteX="117dp" />
+        android:layout_below="@+id/nombre"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Apellido" />
 
     <TextView
         android:id="@+id/correo"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Correo"
-        app:layout_constraintTop_toBottomOf="@+id/apellido"
-        tools:layout_editor_absoluteX="117dp" />
+        android:layout_below="@+id/apellido"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Correo Electrónico" />
 
     <TextView
         android:id="@+id/telefono"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Telefono"
-        app:layout_constraintTop_toBottomOf="@+id/correo"
-        tools:layout_editor_absoluteX="110dp" />
+        android:layout_below="@+id/correo"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Teléfono" />
 
     <Button
         android:id="@+id/gluc"
+        android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_below="@+id/telefono"
+        android:layout_marginTop="24dp"
         android:text="Registro Glucemia"
-        app:layout_constraintTop_toBottomOf="@+id/telefono"
-        tools:layout_editor_absoluteX="2dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/historial"
+        android:background="@drawable/button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gluc"
+        android:layout_marginTop="16dp"
+        android:text="Historial"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
