@@ -49,7 +49,13 @@ public class InicioActivity extends AppCompatActivity {
             startActivity(intent);
             finish(); // Termina la actividad actual para que al volver a ella se muestre el InicioActivity en vez de la RegistroGlucemia
         });
-        //al presionar el boton historial abre la clase
+        //al presionar el boton historial abre la clase historial
+        Button btnHistorial = findViewById(R.id.historial);
+        btnHistorial.setOnClickListener(v -> {
+            Intent intent = new Intent(InicioActivity.this, historial.class);
+            startActivity(intent);
+            finish(); // Termina la actividad actual para que al volver a ella se muestre el InicioActivity en vez de la Historial
+        });
 
 
         DocumentReference docRef = db.collection("Users").document(user.getUid());
