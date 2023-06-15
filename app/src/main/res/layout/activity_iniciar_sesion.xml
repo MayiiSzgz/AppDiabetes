@@ -70,5 +70,15 @@
             android:layout_margin="16dp"
             android:gravity="center"
             android:onClick="irARegistrarse"/>
+        <TextView
+            android:id="@+id/olvidoContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_olvido_contrasena"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:onClick="olvidoContrasena"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

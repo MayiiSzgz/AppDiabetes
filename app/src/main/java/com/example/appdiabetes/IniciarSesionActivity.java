@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,16 @@ public class IniciarSesionActivity extends AppCompatActivity {
         contrasena = findViewById(R.id.contrasenaIS);
 
         mAuth = FirebaseAuth.getInstance();
+        // Agrega el siguiente código para abrir la ventana de restablecimiento de contraseña
+        TextView txtOlvidoContrasena = findViewById(R.id.olvidoContrasena);
+        txtOlvidoContrasena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IniciarSesionActivity.this, RestablecerContrasena.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -50,6 +61,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         Intent i = new Intent(this,RegistrarseActivity.class);
         startActivity(i);
     }
+
 
     public void iniciarSesion(View view)
     {
