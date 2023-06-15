@@ -63,6 +63,13 @@ public class InicioActivity extends AppCompatActivity {
             startActivity(intent);
             finish(); // Termina la actividad actual para que al volver a ella se muestre el InicioActivity en vez de la RegistroMedicamentos
         });
+        //al presiona el boton de ver_medicamentos abre la clase HistorialMedicamentos
+        Button btnVerMedicamentos = findViewById(R.id.ver_medicamentos);
+        btnVerMedicamentos.setOnClickListener(v -> {
+            Intent intent = new Intent(InicioActivity.this, HistorialMedicamentos.class);
+            startActivity(intent);
+            finish(); // Termina la actividad actual para que al volver a ella se muestre el InicioActivity en vez de la HistorialMedicamentos
+        });
 
 
 
