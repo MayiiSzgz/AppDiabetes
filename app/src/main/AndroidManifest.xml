@@ -16,10 +16,10 @@
         android:theme="@style/Theme.AppDiabetes"
         tools:targetApi="31">
         <activity
-            android:name=".RestablecerContrasena"
+            android:name=".historial"
             android:exported="false" />
         <activity
-            android:name=".historial"
+            android:name=".RestablecerContrasena"
             android:exported="false" />
         <activity
             android:name=".pantallaCargaActivity"
