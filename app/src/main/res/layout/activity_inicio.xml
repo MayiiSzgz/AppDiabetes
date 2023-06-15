@@ -7,6 +7,16 @@
     android:background="#FFFFFF"
     tools:context=".InicioActivity">
 
+    <Button
+        android:id="@+id/historial2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gluc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:text="Historial" />
+
     <TextView
         android:id="@+id/nombre"
         style="@style/TextAppearance.AppCompat.Large"
@@ -64,12 +74,33 @@
         android:layout_marginTop="16dp"
         android:text="Historial"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/registro_medicamentos"
+        android:background="@drawable/button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/historial"
+        android:layout_marginTop="16dp"
+        android:text="Registro de Medicamentos"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/ver_medicamentos"
+        android:background="@drawable/button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registro_medicamentos"
+        android:layout_marginTop="16dp"
+        android:text="Ver Medicamentos"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:id="@+id/cerrar_sesion"
         android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/historial"
+        android:layout_below="@+id/ver_medicamentos"
         android:layout_marginTop="16dp"
         android:text="Cerrar Sesión"
         android:layout_centerHorizontal="true" />

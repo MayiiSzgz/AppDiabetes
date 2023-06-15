@@ -18,6 +18,11 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="txt_olvido_contrasena">¿Olvidaste tu contraseña?</string>
+    <string-array name="frecuencia_options">
+        <item>Una vez al día</item>
+        <item>Cada 12 horas</item>
+        <item>Cada 8 horas</item>
+    </string-array>
 
 
 </resources>
