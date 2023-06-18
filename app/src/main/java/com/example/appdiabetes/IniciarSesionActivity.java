@@ -25,6 +25,13 @@ public class IniciarSesionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
+        // Ocultar la barra de navegación y habilitar el modo inmersivo
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE;
+        decorView.setSystemUiVisibility(uiOptions);
+
 
         correo = findViewById(R.id.idCorreoIS);
         contrasena = findViewById(R.id.contrasenaIS);

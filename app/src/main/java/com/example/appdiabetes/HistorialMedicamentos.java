@@ -3,6 +3,7 @@ package com.example.appdiabetes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -30,6 +31,13 @@ public class HistorialMedicamentos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial_medicamentos);
+        // Ocultar la barra de navegación y habilitar el modo inmersivo
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE;
+        decorView.setSystemUiVisibility(uiOptions);
+
 
         listViewHistorial = findViewById(R.id.listViewHistorial);
 

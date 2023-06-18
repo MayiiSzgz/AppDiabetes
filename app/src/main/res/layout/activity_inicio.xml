@@ -7,6 +7,42 @@
     android:background="#FFFFFF"
     tools:context=".InicioActivity">
 
+    <ImageView
+        android:id="@+id/perfil"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_baseline_account_circle_24" />
+    <LinearLayout
+        android:id="@+id/linearNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perfil"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hola"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/perfil"
+            android:text="Hola " />
+        <TextView
+            android:id="@+id/nombre"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/perfil"
+            android:text="Nombre" />
+
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/historial2"
         android:layout_width="wrap_content"
@@ -17,50 +53,13 @@
         android:background="@drawable/button_background"
         android:text="Historial" />
 
-    <TextView
-        android:id="@+id/nombre"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Nombre" />
-
-    <TextView
-        android:id="@+id/apellido"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nombre"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:text="Apellido" />
-
-    <TextView
-        android:id="@+id/correo"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/apellido"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:text="Correo Electrónico" />
-
-    <TextView
-        android:id="@+id/telefono"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/correo"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:text="Teléfono" />
 
     <Button
         android:id="@+id/gluc"
         android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/telefono"
+        android:layout_below="@+id/linearNombre"
         android:layout_marginTop="24dp"
         android:text="Registro Glucemia"
         android:layout_centerHorizontal="true" />
@@ -93,16 +92,20 @@
         android:layout_below="@+id/registro_medicamentos"
         android:layout_marginTop="16dp"
         android:text="Ver Medicamentos"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true">
 
-    <Button
-        android:id="@+id/cerrar_sesion"
-        android:background="@drawable/button_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ver_medicamentos"
-        android:layout_marginTop="16dp"
-        android:text="Cerrar Sesión"
-        android:layout_centerHorizontal="true" />
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="10dp"
+            android:src="@drawable/facebook"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+
+
+    </Button>
+
+
+
+
 
 </RelativeLayout>

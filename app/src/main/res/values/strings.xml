@@ -5,6 +5,7 @@
     <string name="Iniciar_pantalla">Iiniciar sesión</string>
     <string name="Registrar_pantalla">Registrarse</string>
     <string name="btn_iniciar_sesion">Iniciar sesión</string>
+    <string name="btn_perfil">Perfil</string>
     <string name="registrarse">Registrarse</string>
     <string name="txt_registrarse">¿No tienes cuenta? Regístrate</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
