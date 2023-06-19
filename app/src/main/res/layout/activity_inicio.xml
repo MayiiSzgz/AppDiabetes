@@ -17,42 +17,14 @@
         android:layout_centerHorizontal="true"
         android:text="Nombre" />
 
-    <TextView
-        android:id="@+id/apellido"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nombre"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:text="Apellido" />
 
-    <TextView
-        android:id="@+id/correo"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/apellido"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:text="Correo Electrónico" />
-
-    <TextView
-        android:id="@+id/telefono"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/correo"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:text="Teléfono" />
 
     <Button
         android:id="@+id/gluc"
         android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/telefono"
+        android:layout_below="@+id/nombre"
         android:layout_marginTop="24dp"
         android:text="Registro Glucemia"
         android:layout_centerHorizontal="true" />
@@ -95,6 +67,16 @@
         android:layout_below="@+id/ver_medicamentos"
         android:layout_marginTop="16dp"
         android:text="Cerrar Sesión"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/perfil"
+        android:background="@drawable/button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cerrar_sesion"
+        android:layout_marginTop="16dp"
+        android:text="Perfil"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

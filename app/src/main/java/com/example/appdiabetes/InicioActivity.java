@@ -24,9 +24,7 @@ public class InicioActivity extends AppCompatActivity {
     private FirebaseUser user;
 
     private TextView nombreTextView;
-    private TextView apellidoTextView;
-    private TextView correoTextView;
-    private TextView telefonoTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +35,6 @@ public class InicioActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         nombreTextView = findViewById(R.id.nombre);
-        apellidoTextView = findViewById(R.id.apellido);
-        correoTextView = findViewById(R.id.correo);
-        telefonoTextView = findViewById(R.id.telefono);
 
         //al presionar el boton de gluc imprime un
         //toast con el mensaje de que se presiono el boton
@@ -81,9 +76,7 @@ public class InicioActivity extends AppCompatActivity {
                     // Si existe el documento del usuario, se obtienen sus datos y se muestran en la ventana principal
                     Usuario usuario = documentSnapshot.toObject(Usuario.class);
                     nombreTextView.setText(usuario.getNombre());
-                    apellidoTextView.setText(usuario.getApellidos());
-                    correoTextView.setText(usuario.getCorreoElectronico());
-                    telefonoTextView.setText(usuario.getTelefono());
+
                 } else {
                     // Si el documento del usuario no existe, se muestra un mensaje de error
                     Toast.makeText(getApplicationContext(), "No se encontraron datos del usuario", Toast.LENGTH_SHORT).show();
@@ -107,6 +100,13 @@ public class InicioActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+        });
+
+        Button btnPerfil = findViewById(R.id.perfil);
+        btnPerfil.setOnClickListener(v -> {
+            Intent intent = new Intent(InicioActivity.this, PerfilActivity.class);
+            startActivity(intent);
+            finish(); // Termina la actividad actual para que al volver a ella se muestre el InicioActivity en vez de la HistorialMedicamentos
         });
     }
 }
