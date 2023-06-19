@@ -41,6 +41,7 @@
         </activity>
         <activity
             android:name=".InicioActivity"
+            android:launchMode="singleTask"
             android:exported="false" />
         <activity
             android:name=".RegistroGlucemia"
