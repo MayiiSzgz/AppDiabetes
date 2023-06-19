@@ -60,6 +60,35 @@ public class InicioActivity extends AppCompatActivity {
             startActivity(intent);
        });
 
+        //al presiona el boton de ejercicio abre la clase EjerciciosActivity
+        ImageView btnEjercicio = findViewById(R.id.btnEjercicios);
+        btnEjercicio.setOnClickListener(v -> {
+            Intent intent = new Intent(InicioActivity.this, EjerciciosActivity.class);
+            startActivity(intent);
+        });
+
+        //al presiona el boton de alarma abre la clase AlarmasActivity
+        ImageView btnRecetas = findViewById(R.id.btnRecetas);
+        btnRecetas.setOnClickListener(v -> {
+            Intent intent = new Intent(InicioActivity.this, RecetasActivity.class);
+            startActivity(intent);
+        });
+
+        //al presiona el boton de alarma abre la clase Alarmas
+        ImageView btnAlarmas = findViewById(R.id.btnAlarma);
+        btnAlarmas.setOnClickListener(v -> {
+            Intent intent = new Intent(InicioActivity.this, AlarmasActivity.class);
+            startActivity(intent);
+        });
+
+        //al presiona el boton de graficas abre la clase Estadisticas
+        ImageView btnGraficas = findViewById(R.id.btnEstadisticas);
+        btnGraficas.setOnClickListener(v -> {
+            Intent intent = new Intent(InicioActivity.this, EstadisticasActivity.class);
+            startActivity(intent);
+        });
+
+
 
 
 
