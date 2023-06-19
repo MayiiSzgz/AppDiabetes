@@ -3,8 +3,10 @@ package com.example.appdiabetes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +70,19 @@ public class PerfilActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 // Si falla la llamada a Firestore, se muestra un mensaje de error
                 Toast.makeText(getApplicationContext(), "Error al obtener datos del usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Agrega el siguiente código para el botón de cierre de sesión
+        Button btnCerrarSesion = findViewById(R.id.cerrar_sesion);
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(PerfilActivity.this, IniciarSesionActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         });
     }
