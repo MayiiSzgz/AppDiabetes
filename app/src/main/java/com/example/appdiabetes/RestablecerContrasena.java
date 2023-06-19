@@ -25,6 +25,14 @@ public class RestablecerContrasena extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restablecer_contrasena);
 
+        // Ocultar la barra de navegación y habilitar el modo inmersivo
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE;
+        decorView.setSystemUiVisibility(uiOptions);
+
+
         mAuth = FirebaseAuth.getInstance();
 
         editTextCorreo = findViewById(R.id.editTextCorreo);
