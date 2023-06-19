@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -35,7 +36,7 @@ public class RegistroGlucemia extends AppCompatActivity {
 
     private EditText valorEditText;
     private RadioGroup unidadRadioGroup;
-    private EditText fechaHora;
+    private TextView fechaHora;
     private EditText estadoEditText;
     private Button enviarButton;
 
@@ -126,6 +127,12 @@ public class RegistroGlucemia extends AppCompatActivity {
                 }
             }
         });
+        //al presionar el boton historial abre la clase historial
+        Button btnHistorial = findViewById(R.id.historial);
+        btnHistorial.setOnClickListener(v -> {
+            Intent intent = new Intent(RegistroGlucemia.this, historial.class);
+            startActivity(intent);
+        });
     }
     public void showDateTimePicker(View view) {
         Calendar calendar = Calendar.getInstance();
@@ -144,7 +151,7 @@ public class RegistroGlucemia extends AppCompatActivity {
                 dateFormat.setTimeZone(TimeZone.getTimeZone("UTC-6"));
                 String fechaHoraString = dateFormat.format(selectedDateTime.getTime());
 
-                EditText fechaHoraEditText = findViewById(R.id.fechaHora);
+                TextView fechaHoraEditText = findViewById(R.id.fechaHora);
                 fechaHoraEditText.setText(fechaHoraString);
             }, hour, minute, true);
             timePickerDialog.show();

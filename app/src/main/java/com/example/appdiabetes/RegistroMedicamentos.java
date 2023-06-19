@@ -2,6 +2,7 @@ package com.example.appdiabetes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -75,6 +76,13 @@ public class RegistroMedicamentos extends AppCompatActivity {
             public void onClick(View v) {
                 guardarMedicamento();
             }
+        });
+
+        //al presiona el boton de ver_medicamentos abre la clase HistorialMedicamentos
+        Button btnVerMedicamentos = findViewById(R.id.ver_medicamentos);
+        btnVerMedicamentos.setOnClickListener(v -> {
+            Intent intent = new Intent(RegistroMedicamentos.this, HistorialMedicamentos.class);
+            startActivity(intent);
         });
     }
 

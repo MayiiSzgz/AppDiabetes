@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,24 +52,14 @@ public class InicioActivity extends AppCompatActivity {
             Intent intent = new Intent(InicioActivity.this, RegistroGlucemia.class);
             startActivity(intent);
             });
-        //al presionar el boton historial abre la clase historial
-        Button btnHistorial = findViewById(R.id.historial);
-        btnHistorial.setOnClickListener(v -> {
-            Intent intent = new Intent(InicioActivity.this, historial.class);
-            startActivity(intent);
-        });
+
         //al presiona el boton de registro_medicamentos abre la clase RegistroMedicamentos
         Button btnMedicamentos = findViewById(R.id.registro_medicamentos);
         btnMedicamentos.setOnClickListener(v -> {
             Intent intent = new Intent(InicioActivity.this, RegistroMedicamentos.class);
             startActivity(intent);
        });
-        //al presiona el boton de ver_medicamentos abre la clase HistorialMedicamentos
-        Button btnVerMedicamentos = findViewById(R.id.ver_medicamentos);
-        btnVerMedicamentos.setOnClickListener(v -> {
-            Intent intent = new Intent(InicioActivity.this, HistorialMedicamentos.class);
-            startActivity(intent);
-       });
+
 
 
 
@@ -95,7 +86,7 @@ public class InicioActivity extends AppCompatActivity {
         });
         
 
-        Button btnPerfil = findViewById(R.id.perfil);
+        ImageView btnPerfil = findViewById(R.id.perfil);
         btnPerfil.setOnClickListener(v -> {
             Intent intent = new Intent(InicioActivity.this, PerfilActivity.class);
             startActivity(intent);

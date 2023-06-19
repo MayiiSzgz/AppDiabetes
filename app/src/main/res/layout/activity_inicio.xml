@@ -7,15 +7,41 @@
     android:background="#FFFFFF"
     tools:context=".InicioActivity">
 
+    <ImageView
+        android:id="@+id/perfil"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_baseline_account_circle_24" />
 
-
-    <TextView
-        android:id="@+id/nombre"
-        style="@style/TextAppearance.AppCompat.Large"
+    <LinearLayout
+        android:id="@+id/linearNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/perfil"
         android:layout_centerHorizontal="true"
-        android:text="Nombre" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hola"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/perfil"
+            android:text="Hola " />
+        <TextView
+            android:id="@+id/nombre"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/perfil"
+            android:text="Nombre" />
+
+    </LinearLayout>
 
 
 
@@ -24,51 +50,25 @@
         android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nombre"
+        android:layout_below="@+id/linearNombre"
         android:layout_marginTop="24dp"
         android:text="Registro Glucemia"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/historial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/gluc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_background"
-        android:text="Historial" />
+
 
     <Button
         android:id="@+id/registro_medicamentos"
         android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/historial"
+        android:layout_below="@+id/gluc"
         android:layout_marginTop="16dp"
         android:text="Registro de Medicamentos"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/ver_medicamentos"
-        android:background="@drawable/button_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/registro_medicamentos"
-        android:layout_marginTop="16dp"
-        android:text="Ver Medicamentos"
-        android:layout_centerHorizontal="true" />
 
 
 
-    <Button
-        android:id="@+id/perfil"
-        android:background="@drawable/button_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ver_medicamentos"
-        android:layout_marginTop="16dp"
-        android:text="Perfil"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
