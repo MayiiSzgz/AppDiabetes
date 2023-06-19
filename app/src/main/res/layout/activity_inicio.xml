@@ -43,28 +43,27 @@
 
     </LinearLayout>
 
-
-
-    <Button
+    <ImageView
         android:id="@+id/gluc"
         android:background="@drawable/button_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/linearNombre"
         android:layout_marginTop="24dp"
-        android:text="Registro Glucemia"
+        android:src="@drawable/glucosa"
         android:layout_centerHorizontal="true" />
 
 
 
-    <Button
+
+    <ImageView
         android:id="@+id/registro_medicamentos"
         android:background="@drawable/button_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/gluc"
         android:layout_marginTop="16dp"
-        android:text="Registro de Medicamentos"
+        android:src="@drawable/medicamentos"
         android:layout_centerHorizontal="true" />
 
 

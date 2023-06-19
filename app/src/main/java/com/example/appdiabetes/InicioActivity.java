@@ -47,14 +47,14 @@ public class InicioActivity extends AppCompatActivity {
 
         //al presionar el boton de gluc imprime un
         //toast con el mensaje de que se presiono el boton
-        Button btnGlucemia = findViewById(R.id.gluc);
+        ImageView btnGlucemia = findViewById(R.id.gluc);
         btnGlucemia.setOnClickListener(v -> {
             Intent intent = new Intent(InicioActivity.this, RegistroGlucemia.class);
             startActivity(intent);
             });
 
         //al presiona el boton de registro_medicamentos abre la clase RegistroMedicamentos
-        Button btnMedicamentos = findViewById(R.id.registro_medicamentos);
+        ImageView btnMedicamentos = findViewById(R.id.registro_medicamentos);
         btnMedicamentos.setOnClickListener(v -> {
             Intent intent = new Intent(InicioActivity.this, RegistroMedicamentos.class);
             startActivity(intent);
