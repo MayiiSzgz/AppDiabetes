@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+    public void irRegistrarse(View view)
+    {
+        Intent i = new Intent(this,RegistrarseActivity.class);
+        startActivity(i);
+
+    }
 
 
 }
