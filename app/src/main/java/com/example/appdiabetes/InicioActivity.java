@@ -112,4 +112,8 @@ public class InicioActivity extends AppCompatActivity {
             startActivity(intent);
           });
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity(); // Cierra todas las actividades y sale de la aplicación
+    }
 }
