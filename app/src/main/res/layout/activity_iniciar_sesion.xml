@@ -49,6 +49,17 @@
             android:padding="12dp"
             android:layout_margin="16dp"/>
 
+        <CheckBox
+            android:id="@+id/checkBoxMostrarContrasena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="2dp"
+            android:text="Mostrar contraseña"
+            android:gravity="center"
+
+            />
+
         <Button
             android:id="@+id/registraseR"
             android:layout_width="match_parent"
@@ -79,6 +90,6 @@
             android:textSize="18sp"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:onClick="olvidoContrasena"/>
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

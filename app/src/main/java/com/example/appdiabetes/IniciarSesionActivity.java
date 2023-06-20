@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class IniciarSesionActivity extends AppCompatActivity {
     private EditText correo;
     private EditText contrasena;
+    private CheckBox checkBoxMostrarContrasena;
 
     private FirebaseAuth mAuth;
     @Override
@@ -36,6 +39,18 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
         correo = findViewById(R.id.idCorreoIS);
         contrasena = findViewById(R.id.contrasenaIS);
+        checkBoxMostrarContrasena = findViewById(R.id.checkBoxMostrarContrasena);
+
+        checkBoxMostrarContrasena.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // Mostrar contraseña
+                contrasena.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            } else {
+                // Ocultar contraseña
+                contrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
         // Agrega el siguiente código para abrir la ventana de restablecimiento de contraseña
