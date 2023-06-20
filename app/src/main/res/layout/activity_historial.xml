@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="#E3F2FD">
 
     <TextView
         android:id="@+id/textViewHistorialTitulo"
@@ -14,7 +14,7 @@
         android:text="Historial de Glucemia"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black" />
+        android:textColor="#0D47A1" />
 
     <ListView
         android:id="@+id/listViewHistorial"
@@ -23,6 +23,8 @@
         android:layout_weight="1"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
-        android:background="@android:color/white" />
+        android:background="#BBDEFB"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>

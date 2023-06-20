@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_alarmas.xml" value="0.20923913043478262" />
+        <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_ejercicios.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_estadisticas.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_historial.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_iniciar_sesion.xml" value="0.25" />
@@ -11,6 +12,7 @@
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_pantalla_carga.xml" value="0.25" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_perfil.xml" value="0.2441123188405797" />
+        <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_recetas.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_registrarse.xml" value="0.264" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_registro_glucemia.xml" value="0.20923913043478262" />
         <entry key="..\:/Users/marys/proyectosAndroid/appDiabetes/app/src/main/res/layout/activity_registro_medicamentos.xml" value="0.20923913043478262" />
