@@ -61,54 +61,28 @@ public class MyForegroundService extends Service {
             Query query = db.collection("Medicamentos")
                     .document(user.getUid())
                     .collection("Historial")
-                    .orderBy("siguienteDosis", Query.Direction.ASCENDING)
-                    .limit(2);
+                    .orderBy("siguienteDosis", Query.Direction.ASCENDING);
 
             query.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     List<DocumentSnapshot> documents = task.getResult().getDocuments();
-                    if (documents.size() >= 2) {
-                        DocumentSnapshot firstDose = documents.get(0);
-                        DocumentSnapshot secondDose = documents.get(1);
+
+                    for (DocumentSnapshot document : documents) {
+                        String siguienteDosis = document.getString("siguienteDosis");
+                        long nextDoseTime = convertTimeStringToTimestamp(siguienteDosis);
 
                         long currentTime = Calendar.getInstance().getTimeInMillis();
+                        long timeDifference = nextDoseTime - currentTime;
 
-                        // Obtener los valores de siguienteDosis como cadenas de texto
-                        String firstDoseTimeStr = firstDose.getString("siguienteDosis");
-                        String secondDoseTimeStr = secondDose.getString("siguienteDosis");
-
-                        // Convertir las cadenas de texto a valores numéricos
-                        long firstDoseTime = convertTimeStringToTimestamp(firstDoseTimeStr);
-                        long secondDoseTime = convertTimeStringToTimestamp(secondDoseTimeStr);
-
-                        // Comparar los tiempos de las dosis con la hora actual
-                        if (firstDoseTime >= currentTime) {
-                            // La primera dosis es la más cercana a la hora actual
-                            long timeDifference = firstDoseTime - currentTime;
-                            if (timeDifference <= 30 * 60 * 1000) {
-                                // La siguiente dosis está a menos de 30 minutos de distancia
-                                String siguienteDosis = firstDose.getString("siguienteDosis");
-                                showNotification(siguienteDosis);
-                            }
-                        } else if (secondDoseTime >= currentTime) {
-                            // La segunda dosis es la más cercana a la hora actual
-                            long timeDifference = secondDoseTime - currentTime;
-                            if (timeDifference <= 30 * 60 * 1000) {
-                                // La siguiente dosis está a menos de 30 minutos de distancia
-                                String siguienteDosis = secondDose.getString("siguienteDosis");
-                                showNotification(siguienteDosis);
-                            }
+                        if (timeDifference <= 30 * 60 * 1000) {
+                            showNotification(siguienteDosis);
                         }
-                    } else if (documents.size() == 1) {
-                        // Solo hay una dosis programada
-                        DocumentSnapshot document = documents.get(0);
-                        String siguienteDosis = document.getString("siguienteDosis");
-                        showNotification(siguienteDosis);
                     }
                 }
             });
         }
     }
+
 
 
     private long convertTimeStringToTimestamp(String timeString) {
