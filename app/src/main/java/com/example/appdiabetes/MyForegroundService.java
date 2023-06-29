@@ -38,9 +38,13 @@ public class MyForegroundService extends Service {
         // Obtener la siguiente dosis desde Firebase
         obtenerSiguienteDosis();
 
+        // Llamar a startForeground() para indicar que el servicio está en primer plano
+        startForeground(NOTIFICATION_ID, buildNotification("Prueba")); // Pasar una cadena vacía o una cadena predeterminada como siguienteDosis
+
         // Devolver START_STICKY para que el servicio se reinicie automáticamente si se finaliza
         return START_STICKY;
     }
+
 
     @Override
     public void onDestroy() {
@@ -63,6 +67,7 @@ public class MyForegroundService extends Service {
                 if (task.isSuccessful()) {
                     List<DocumentSnapshot> documents = task.getResult().getDocuments();
                     long currentTime = Calendar.getInstance().getTimeInMillis();
+                    long halfHourInMillis = 30 * 60 * 1000;
 
                     for (DocumentSnapshot document : documents) {
                         String siguienteDosis = document.getString("siguienteDosis");
@@ -70,7 +75,7 @@ public class MyForegroundService extends Service {
 
                         long timeDifference = nextDoseTime - currentTime;
 
-                        if (timeDifference <= 30 * 60 * 1000) {
+                        if (timeDifference <= halfHourInMillis && timeDifference > 0) {
                             showNotification(siguienteDosis);
                         }
                     }
