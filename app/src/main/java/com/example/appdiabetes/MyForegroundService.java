@@ -5,19 +5,15 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
-
 import androidx.core.app.NotificationCompat;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
 import java.util.List;
@@ -66,12 +62,12 @@ public class MyForegroundService extends Service {
             query.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     List<DocumentSnapshot> documents = task.getResult().getDocuments();
+                    long currentTime = Calendar.getInstance().getTimeInMillis();
 
                     for (DocumentSnapshot document : documents) {
                         String siguienteDosis = document.getString("siguienteDosis");
                         long nextDoseTime = convertTimeStringToTimestamp(siguienteDosis);
 
-                        long currentTime = Calendar.getInstance().getTimeInMillis();
                         long timeDifference = nextDoseTime - currentTime;
 
                         if (timeDifference <= 30 * 60 * 1000) {
@@ -82,6 +78,7 @@ public class MyForegroundService extends Service {
             });
         }
     }
+
 
 
 
@@ -111,8 +108,16 @@ public class MyForegroundService extends Service {
         // Crear una notificación con la siguiente dosis
         createNotificationChannel();
         Notification notification = buildNotification(siguienteDosis);
-        startForeground(NOTIFICATION_ID, notification);
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        int notificationId = generateNotificationId(); // Generar un ID único para cada notificación
+        manager.notify(notificationId, notification);
     }
+
+    private int generateNotificationId() {
+        // Generar un ID único para cada notificación basado en la hora actual
+        return (int) System.currentTimeMillis();
+    }
+
 
     private void createNotificationChannel() {
         // Configurar un canal de notificación para Android 8.0 y versiones superiores
