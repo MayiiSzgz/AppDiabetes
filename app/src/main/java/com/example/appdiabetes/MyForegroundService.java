@@ -1,12 +1,15 @@
 package com.example.appdiabetes;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +22,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MyForegroundService extends Service {
+    private static final int ALARM_REQUEST_CODE = 1;
 
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "ForegroundServiceChannel";
@@ -26,29 +30,60 @@ public class MyForegroundService extends Service {
     private FirebaseFirestore db;
     private FirebaseUser user;
 
+    private Handler handler;
+    private Runnable runnable;
+
     @Override
     public void onCreate() {
         super.onCreate();
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                obtenerSiguienteDosis();
+                handler.postDelayed(this, 30 * 60 * 1000); // Verificar cada 30 minutos
+            }
+        };
     }
+
+    private boolean isFirstUpdate = true; // Agregar esta variable de bandera
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // Obtener la siguiente dosis desde Firebase
-        obtenerSiguienteDosis();
+        startForeground(NOTIFICATION_ID, buildNotification("Prueba", "")); // Pasar una cadena vacía o una cadena predeterminada como siguienteDosis
+        handler.post(runnable); // Comenzar a verificar las dosis
 
-        // Llamar a startForeground() para indicar que el servicio está en primer plano
-        startForeground(NOTIFICATION_ID, buildNotification("Prueba")); // Pasar una cadena vacía o una cadena predeterminada como siguienteDosis
+        // Agregar la función de escucha para recibir actualizaciones en tiempo real de los datos relevantes
+        db.collection("Medicamentos")
+                .document(user.getUid())
+                .collection("Historial")
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        // Manejar el error
+                        return;
+                    }
 
-        // Devolver START_STICKY para que el servicio se reinicie automáticamente si se finaliza
+                    if (value != null) {
+                        // Se recibieron actualizaciones en tiempo real de los datos relevantes
+                        if (isFirstUpdate) {
+                            isFirstUpdate = false;
+                        } else {
+                            obtenerSiguienteDosis(); // Actualizar las notificaciones y alarmas
+                        }
+                    }
+                });
+
         return START_STICKY;
     }
+
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        handler.removeCallbacks(runnable); // Detener la verificación de las dosis
     }
 
     @Override
@@ -68,16 +103,38 @@ public class MyForegroundService extends Service {
                     List<DocumentSnapshot> documents = task.getResult().getDocuments();
                     long currentTime = Calendar.getInstance().getTimeInMillis();
                     long halfHourInMillis = 30 * 60 * 1000;
+                    long nextDoseTime = Long.MAX_VALUE; // Inicializar con un valor máximo para obtener la siguiente dosis más cercana
 
                     for (DocumentSnapshot document : documents) {
                         String siguienteDosis = document.getString("siguienteDosis");
-                        long nextDoseTime = convertTimeStringToTimestamp(siguienteDosis);
+                        String nombreMedicamento = document.getString("nombre");
+                        int hour = convertTimeStringToHour(siguienteDosis);
+                        int minute = convertTimeStringToMinute(siguienteDosis);
 
-                        long timeDifference = nextDoseTime - currentTime;
+                        Calendar nextDoseCalendar = Calendar.getInstance();
+                        nextDoseCalendar.set(Calendar.HOUR_OF_DAY, hour);
+                        nextDoseCalendar.set(Calendar.MINUTE, minute);
+                        nextDoseCalendar.set(Calendar.SECOND, 0);
+                        nextDoseCalendar.set(Calendar.MILLISECOND, 0);
+
+                        // Verificar si la siguiente dosis ocurre después de la medianoche
+                        if (hour < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+                            nextDoseCalendar.add(Calendar.DAY_OF_YEAR, 1);
+                        }
+
+                        long nextDoseTimeInMillis = nextDoseCalendar.getTimeInMillis();
+                        long timeDifference = nextDoseTimeInMillis - currentTime;
 
                         if (timeDifference <= halfHourInMillis && timeDifference > 0) {
-                            showNotification(siguienteDosis);
+                            showNotification(siguienteDosis, nombreMedicamento);
                         }
+                        if (nextDoseTimeInMillis > currentTime && nextDoseTimeInMillis < nextDoseTime) {
+                            nextDoseTime = nextDoseTimeInMillis;
+                        }
+                    }
+
+                    if (nextDoseTime < Long.MAX_VALUE) {
+                        scheduleAlarm(nextDoseTime); // Establecer alarma para la siguiente dosis más cercana
                     }
                 }
             });
@@ -85,47 +142,51 @@ public class MyForegroundService extends Service {
     }
 
 
+    private void scheduleAlarm(long alarmTime) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, ALARM_REQUEST_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent);
+        } else {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent);
+        }
+    }
 
-    private long convertTimeStringToTimestamp(String timeString) {
+    private int convertTimeStringToHour(String timeString) {
         try {
-            // Obtener la hora y los minutos de la cadena de texto
             String[] parts = timeString.split(":");
-            int hour = Integer.parseInt(parts[0]);
-            int minute = Integer.parseInt(parts[1]);
-
-            // Obtener el calendario actual y establecer la hora y los minutos
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, hour);
-            calendar.set(Calendar.MINUTE, minute);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.MILLISECOND, 0);
-
-            // Obtener el valor numérico en milisegundos desde la medianoche
-            return calendar.getTimeInMillis();
+            return Integer.parseInt(parts[0]);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        return 0; // Devuelve 0 si hay algún error al convertir la cadena de texto
+        return 0;
     }
 
-    private void showNotification(String siguienteDosis) {
-        // Crear una notificación con la siguiente dosis
+    private int convertTimeStringToMinute(String timeString) {
+        try {
+            String[] parts = timeString.split(":");
+            return Integer.parseInt(parts[1]);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private void showNotification(String siguienteDosis, String nombreMedicamento) {
         createNotificationChannel();
-        Notification notification = buildNotification(siguienteDosis);
+        Notification notification = buildNotification(nombreMedicamento, siguienteDosis);
         NotificationManager manager = getSystemService(NotificationManager.class);
-        int notificationId = generateNotificationId(); // Generar un ID único para cada notificación
+        int notificationId = generateNotificationId();
         manager.notify(notificationId, notification);
     }
 
     private int generateNotificationId() {
-        // Generar un ID único para cada notificación basado en la hora actual
         return (int) System.currentTimeMillis();
     }
 
-
     private void createNotificationChannel() {
-        // Configurar un canal de notificación para Android 8.0 y versiones superiores
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence channelName = "Foreground Service Channel";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -135,13 +196,12 @@ public class MyForegroundService extends Service {
         }
     }
 
-    private Notification buildNotification(String siguienteDosis) {
-        // Construir la notificación con la siguiente dosis como contenido
+    private Notification buildNotification(String nombreMedicamento, String siguienteDosis) {
         Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
         return new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Próxima Dosis")
+                .setContentTitle(nombreMedicamento)
                 .setContentText(siguienteDosis)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pendingIntent)
